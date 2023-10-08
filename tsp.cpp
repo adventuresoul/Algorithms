@@ -24,7 +24,7 @@ void getCostMatrix() {
     }
 }
 
-int findMinCost(int city) {
+void findMinCost(int city) {
     visited[city] = 1;
     cout << city + 1 << " -> ";
 
@@ -43,23 +43,25 @@ int findMinCost(int city) {
 
     if (nearestCity == INF) {
         nearestCity = 0;
-        cout << nearestCity + 1;
         cost += a[city][nearestCity];
     }
-
-    return nearestCity;
 }
 
 void printMinimumCost() {
+    cout << "\nThe Path is:\n";
+    for (int i = 0; i < n; i++) {
+        if (visited[i] == 0) {
+            findMinCost(i);
+            break;
+        }
+    }
     cout << "\n\nMinimum cost: " << cost << "\n";
 }
 
 int main() {
     getCostMatrix();
     
-    cout << "\nThe Path is:\n";
-    findMinCost(0);
-    
     printMinimumCost();
     return 0;
 }
+
